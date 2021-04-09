@@ -9,18 +9,22 @@ if (process.argv.length !== 3) {
 }
 
 const getHTML = async (address) => {
-  const response = await axios.get(address)
-  await fsPromises.writeFile('index.html', response.data)
+    try {
+    const response = await axios.get(address)
+    await fsPromises.writeFile('index.html', response.data)
+    } catch (e) {
+    console.log(e.message)
+  }
 }
 
 const getDataSize = async (file) => {
-  const stats = await fsPromises.stat(file)
-  console.log(`"index.html" size : ${stats.size} bytes`)
+    try {
+    const stats = await fsPromises.stat(file)
+    console.log(`"index.html" size : ${stats.size} bytes`)
+    } catch (e) {
+    console.log(e.message)
+  }
 }
 
-try {
   getHTML(process.argv[2])
   getDataSize('./index.html')
-} catch (e) {
-  console.log(e.message)
-}
