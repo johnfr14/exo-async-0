@@ -13,7 +13,7 @@ const getHTML = async (address) => {
   await fsPromises.writeFile('index.html', response.data)
 }
 
-const getDataSize = async(file) => {
+const getDataSize = async (file) => {
   const stats = await fsPromises.stat(file)
   console.log(`"index.html" size : ${stats.size} bytes`)
 }
