@@ -12,19 +12,11 @@ const getHTML = async (address) => {
     try {
     const response = await axios.get(address)
     await fsPromises.writeFile('index.html', response.data)
-    } catch (e) {
-    console.log(e.message)
-  }
-}
-
-const getDataSize = async (file) => {
-    try {
-    const stats = await fsPromises.stat(file)
+    const stats = await fsPromises.stat('index.html')
     console.log(`"index.html" size : ${stats.size} bytes`)
     } catch (e) {
     console.log(e.message)
   }
 }
 
-  getHTML(process.argv[2])
-  getDataSize('./index.html')
+getHTML(process.argv[2])
